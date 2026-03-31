@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OurLove</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="app-body">
+  <div class="bg-blur bg-1"></div>
+  <div class="bg-blur bg-2"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-dot"></div>
+        <div>
+          <h1 class="brand-title">OurLove</h1>
+          <p class="brand-subtitle">Our private memory space</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <!-- HOME -->
+      <section id="homeTab" class="tab-panel active">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="eyebrow">welcome back</p>
+            <h2 id="welcomeText">Welcome</h2>
+            <p>
+           Zahia bicheed, Dursamjuudaa hadgalaaraii...
+            </p>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-box">
+              <span class="stat-number" id="memoryCount">0</span>
+              <span class="stat-label">Memories</span>
+            </div>
+
+            <div class="stat-box">
+              <span class="stat-number" id="letterCount">0</span>
+              <span class="stat-label">Letters</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMORIES -->
+      <section id="memoriesTab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">gallery</p>
+            <h2>Memories</h2>
+          </div>
+          <button id="openMemoryBtn" class="primary-btn">Add Memory</button>
+        </div>
+
+        <div id="memoryList" class="card-grid"></div>
+      </section>
+
+      <!-- LETTERS -->
+      <section id="lettersTab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">heart notes</p>
+            <h2>Letters</h2>
+          </div>
+          <button id="openLetterBtn" class="primary-btn">Write Letter</button>
+        </div>
+
+        <div id="letterList" class="card-grid"></div>
+      </section>
+
+      <!-- CALENDAR -->
+      <section id="calendarTab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">timeline</p>
+            <h2>Calendar</h2>
+          </div>
+        </div>
+
+        <div id="calendarContainer" class="calendar-stack"></div>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="profileTab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">personal</p>
+            <h2>Profile</h2>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-top">
+            <div class="profile-avatar-wrap">
+              <img id="profilePreview" class="profile-avatar" alt="Profile Preview" />
+              <div id="avatarFallback" class="avatar-fallback">♡</div>
+            </div>
+
+            <div class="profile-fields">
+              <label class="input-label" for="profileName">Name</label>
+              <input id="profileName" type="text" placeholder="Your name" />
+
+              <label class="input-label" for="profileBio">Introduction</label>
+              <textarea id="profileBio" rows="5" placeholder="Goy ym bicheree..."></textarea>
+
+              <label class="input-label" for="profileImage">Profile Picture</label>
+              <input id="profileImage" type="file" accept="image/*" />
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button id="saveProfileBtn" class="primary-btn">Save Profile</button>
+            <button id="logoutBtn" class="secondary-btn">Log Out</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- BOTTOM TAB BAR -->
+  <nav class="bottom-tabbar">
+    <button class="tabbar-btn active" data-tab-target="homeTab" type="button">
+      <span>⌂</span>
+      <small>Home</small>
+    </button>
+
+    <button class="tabbar-btn" data-tab-target="memoriesTab" type="button">
+      <span>♡</span>
+      <small>Memories</small>
+    </button>
+
+    <button class="tabbar-btn" data-tab-target="lettersTab" type="button">
+      <span>✉</span>
+      <small>Letters</small>
+    </button>
+
+    <button class="tabbar-btn" data-tab-target="calendarTab" type="button">
+      <span>◫</span>
+      <small>Calendar</small>
+    </button>
+
+    <button class="tabbar-btn" data-tab-target="profileTab" type="button">
+      <span>◉</span>
+      <small>Profile</small>
+    </button>
+  </nav>
+
+  <!-- MEMORY MODAL -->
+  <div id="memoryModal" class="modal hidden">
+    <div class="modal-card">
+      <div class="sheet-handle"></div>
+
+      <div class="modal-header">
+        <h3>Add Memory</h3>
+        <button class="icon-close" data-close-modal="memoryModal" type="button">×</button>
+      </div>
+
+      <div class="modal-body">
+        <label class="input-label" for="memoryDate">Date</label>
+        <input id="memoryDate" type="date" />
+
+        <label class="input-label" for="memoryTitle">Title</label>
+        <input id="memoryTitle" type="text" placeholder="Memory title" />
+
+        <label class="input-label" for="memoryText">What happened?</label>
+        <textarea id="memoryText" rows="5" placeholder="Write what happened that day..."></textarea>
+
+        <label class="input-label" for="memoryImage">Photo</label>
+        <div id="dropZone" class="drop-zone">
+          <p>Drag & drop an image here</p>
+          <span>or</span>
+          <input id="memoryImage" type="file" accept="image/*" />
+        </div>
+
+        <img id="memoryImagePreview" class="image-preview hidden" alt="Preview" />
+      </div>
+
+      <div class="modal-footer">
+        <button class="secondary-btn" data-close-modal="memoryModal" type="button">Cancel</button>
+        <button id="saveMemoryBtn" class="primary-btn" type="button">Save Memory</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LETTER MODAL -->
+  <div id="letterModal" class="modal hidden">
+    <div class="modal-card">
+      <div class="sheet-handle"></div>
+
+      <div class="modal-header">
+        <h3>Write Letter</h3>
+        <button class="icon-close" data-close-modal="letterModal" type="button">×</button>
+      </div>
+
+      <div class="modal-body">
+        <label class="input-label" for="letterDate">Date</label>
+        <input id="letterDate" type="date" />
+
+        <label class="input-label" for="letterTitle">Title</label>
+        <input id="letterTitle" type="text" placeholder="Letter title" />
+
+        <label class="input-label" for="letterText">Letter</label>
+        <textarea id="letterText" rows="8" placeholder="Write your letter..."></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="secondary-btn" data-close-modal="letterModal" type="button">Cancel</button>
+        <button id="saveLetterBtn" class="primary-btn" type="button">Save Letter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW MODAL -->
+  <div id="viewModal" class="modal hidden">
+    <div class="modal-card view-card">
+      <div class="sheet-handle"></div>
+
+      <div class="modal-header">
+        <h3 id="viewModalHeading">Details</h3>
+        <button class="icon-close" data-close-modal="viewModal" type="button">×</button>
+      </div>
+
+      <div id="viewModalBody" class="modal-body view-layout"></div>
+
+      <div class="modal-footer">
+        <button id="deleteItemBtn" class="danger-btn hidden" type="button">Delete</button>
+        <button class="primary-btn" data-close-modal="viewModal" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <footer class="footer">
+  © 2026 OurLove · Made with love 💙
+</footer>
+</body>
+</html>
